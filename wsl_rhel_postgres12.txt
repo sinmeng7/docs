@@ -1,0 +1,36 @@
+Linux용 Windows 하위 시스템 사용
+# PowerShell을 관리자 권한으로 실행합니다
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+# Virtual Machine 기능 사용
+# PowerShell을 관리자 권한으로 열어 실행 합니다.
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+# Linux 커널 업데이트 패키지 다운로드
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+# WLS 2를 기본 버전으로 설정
+wsl --set-default-version 2
+
+# Linux용 Windows 하위 시스템(WSL)을 관리하기 위한 모든 기능을 갖춘 유틸리티
+https://github.com/DDoSolitary/LxRunOffline
+
+# redhat 로그인
+docker login registry.redhat.io
+
+# redhat 기반 container 검색
+https://catalog.redhat.com/search?searchType=containers
+
+# 이미지 받기
+docker pull registry.redhat.io/rhel8/postgresql-12:1-182.1739758160
+
+# docker pull permission denied
+sudo chmod 666 /var/run/docker.sock
+sudo chown root:docker /var/run/docker.sock
+
+# docker 이미지
+docker images
+
+# docker save
+docker save -o rhel_postgres12.tar registry.redhat.io/rhel8/postgresql-12
+
